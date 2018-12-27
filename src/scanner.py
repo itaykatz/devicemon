@@ -8,12 +8,20 @@ from settings.cellphone_titles import cellphone_titles
 
 
 class TsharkScanner(object):
+    """
+    Class for handling the Tshark scanner and parsing its results
+    """
     def __init__(self, tmp_path, interface):
         self.tmp_path = tmp_path
         self.interface = interface
 
     def scan(self, scan_time, in_file=None):
-        """Monitor wifi signals to count the number of people around you"""
+        """
+        Scanning for Wi-Fi devices around
+        :param scan_time: time for Tshark scan
+        :param in_file: for testing purpose
+        :return:
+        """
         if not in_file:
             current_app.logger.info("No file given")
 
@@ -45,6 +53,11 @@ class TsharkScanner(object):
         return only_mobile_vendor_dict
 
     def tshark_scan(self, scan_time):
+        """
+        run the tshark scanning command and return its output
+        :param scan_time:
+        :return:
+        """
         current_app.logger.info("Initiating tshark...")
 
         command = ['tshark',
@@ -61,6 +74,11 @@ class TsharkScanner(object):
 
     @staticmethod
     def tshark_parse(tshark_file):
+        """
+        parse the tshark output to string
+        :param tshark_file:
+        :return:
+        """
         current_app.logger.info("Start parsing...")
         command = ['tshark',
                    '-r', tshark_file,
@@ -79,6 +97,11 @@ class TsharkScanner(object):
 
     @staticmethod
     def tshark_add_vendor(devices_df):
+        """
+        enrich the tshark output with device vendors
+        :param devices_df:
+        :return:
+        """
         current_app.logger.error("Enriching data with Vendor names...")
         splitted_devices_df = pd.DataFrame()
         splitted_devices_df['MAC'] = devices_df[0]

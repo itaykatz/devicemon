@@ -15,8 +15,12 @@ def get_devices():
     return jsonify(result)
 
 
-@app.route('/test_devices')
+@app.route('/test_devices', methods=['GET'])
 def get_test_devices():
+    """
+    uses local tshark file for testing
+    :return:
+    """
     scanner = app.config.get('scanner')
     scan_time = request.args.get('scan_time', 1)
 

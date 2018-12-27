@@ -13,7 +13,6 @@ setup(
         "pandas >= 0.23.4",
         "Flask >= 1.0.2",
         "pytest >= 4.0.2",
-        "flaskr "
     ]
 
 )

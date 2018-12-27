@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+airmon-ng check kill
+airmon-ng start wlan1
+
+source activate py36
+python /home/pi/PythonProjects/devicemon/devicemon.py
